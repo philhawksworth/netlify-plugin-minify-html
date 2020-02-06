@@ -4,7 +4,7 @@ This [plugin](https://www.netlify.com/build/plugins-beta?utm_source=github&utm_m
 
 Note: Many SSGs support this as part of their own process so this might not always be necessary.
 
-This plugin is agnostic to the tool being used to generate the markup, and acts purely on the markup it finds in `.html` files in the publish folder which [Netlify](https://www.netlify.com?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) is preparing to deploy to its CDN following as successful build.
+This plugin is agnostic to the tool being used to generate the markup, and acts purely on the markup it finds in `.html` files in the publish folder which [Netlify](https://www.netlify.com?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) is preparing to deploy to [its CDN](https://www.netlify.com/products/edge/?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) following a successful build.
 
 ## Installation
 
@@ -36,7 +36,6 @@ plugins:
       # [production, deploy-preview, branch-deploy]
       targets:
         - production
-        - deploy-preview
         - branch-deploy
       minifierOptions:
         - removeComments: false

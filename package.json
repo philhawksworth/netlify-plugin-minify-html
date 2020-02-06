@@ -6,6 +6,10 @@
   "keywords": ["Netlify", "Plugin", "Optimisation"],
   "author": "Phil Hawksworth",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philhawksworth/netlify-plugin-minify-html"
+  },
   "dependencies": {
     "@node-minify/core": "^5.3.0",
     "@node-minify/html-minifier": "^5.3.0"
