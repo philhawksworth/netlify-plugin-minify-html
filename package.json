@@ -1,10 +1,10 @@
 {
   "name": "netlify-plugin-minify-html",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "A plugin to add HTML minification as a post-processing optimisation in Netlify",
   "main": "index.js",
-  "keywords": [],
-  "author": "",
+  "keywords": ["Netlify", "Plugin", "Optimisation"],
+  "author": "Phil Hawksworth",
   "license": "ISC",
   "dependencies": {
     "@node-minify/core": "^5.3.0",
