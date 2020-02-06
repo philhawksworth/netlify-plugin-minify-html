@@ -21,7 +21,7 @@ npm i --s netlify-plugin-minify-html
 ```
 
 
-### 2. Add the plugin and its options to your netlify.toml
+### 2. Add the plugin and its options to your netlify.yaml
 
 You can choose which deploy contexts will include the HTML minification with the `targets` option.
 
