@@ -1,4 +1,4 @@
-const comp = require('@node-minify/core');
+const comp         = require('@node-minify/core');
 const htmlMinifier = require('@node-minify/html-minifier');
 
 
@@ -25,13 +25,17 @@ module.exports = {
     console.log("Minifying in these deploy contexts:", targetContexts);
     console.log("Minifying with these options:", minifierOptions);
 
+    // transform the minification options from the yaml
+    // into the correct syntax
+    const options = Object.assign({}, ...minifierOptions);
+
     // Minify in place
     comp({
       compressor: htmlMinifier,
       input: publishDir + '/**/*.html',
       output: '$1.html',
       replaceInPlace: true,
-      // options: options,
+      options: options,
       callback: function(err) {
         if (err) console.log(err);
       }
