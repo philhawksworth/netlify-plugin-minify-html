@@ -16,7 +16,6 @@ module.exports = {
   name: 'netlify-plugin-minify-html',
 
   onPostBuild: (args) => {
-
     // Assemble and advertise our options
     const {
       publishDir,
@@ -26,17 +25,17 @@ module.exports = {
     console.log("Minifying in these deploy contexts:", targetContexts);
     console.log("Minifying with these options:", minifierOptions);
 
-    //
+    // Minify in place
     comp({
       compressor: htmlMinifier,
       input: publishDir + '/**/*.html',
       output: '$1.html',
       replaceInPlace: true,
+      // options: options,
       callback: function(err) {
         if (err) console.log(err);
       }
     });
-
   }
 
 }
