@@ -1,0 +1,16 @@
+{
+  "name": "netlify-plugin-minify-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@node-minify/core": "^5.3.0",
+    "@node-minify/html-minifier": "^5.3.0",
+    "exec-sh": "^0.3.4",
+    "glob": "^7.1.6",
+    "html-minifier": "^4.0.0"
+  }
+}
