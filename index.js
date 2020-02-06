@@ -16,6 +16,7 @@ module.exports = {
   name: 'netlify-plugin-minify-html',
 
   onPostBuild: (args) => {
+
     // Assemble and advertise our options
     const {
       publishDir,
@@ -24,6 +25,12 @@ module.exports = {
     } = getOptions(args);
     console.log("Minifying in these deploy contexts:", targetContexts);
     console.log("Minifying with these options:", minifierOptions);
+
+    // Only continue in the correct deploy contexts
+    if( !targetContexts.includes(process.env.CONTEXT) ) {
+      console.log('Not minifiying builds in the context:', process.env.CONTEXT);
+      return;
+    }
 
     // transform the minification options from the yaml
     // into the correct syntax
