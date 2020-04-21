@@ -5,3 +5,5 @@ inputs:
     - production
     - branch-deploy
     - deploy-preview
+  - name: minifierOptions
+    required: false
