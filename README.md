@@ -51,3 +51,10 @@ You can use the default options for the minification or use `[plugins.inputs.min
 
 ```
 
+## Quick try-out
+
+You can try out this plugin by deploying [a simple site](https://test-plugin-html-minifer.netlify.app/) which uses it.
+
+Clicking the button below will clone [a test site repo](https://github.com/philhawksworth/test-site-netlify-plugin-minify-html), setup a new site [on Netlify](https://netlify.com?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) and deploy the site complete with the plugin configured and operational.
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/philhawksworth/test-site-netlify-plugin-minify-html)
