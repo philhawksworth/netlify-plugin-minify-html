@@ -3,7 +3,12 @@
   "version": "0.2.0",
   "description": "A plugin to add HTML minification as a post-processing optimisation in Netlify",
   "main": "index.js",
-  "keywords": ["Netlify", "Plugin", "Optimisation", "Performance"],
+  "keywords": [
+    "Netlify",
+    "Plugin",
+    "Optimisation",
+    "Performance"
+  ],
   "author": "Phil Hawksworth",
   "license": "ISC",
   "repository": {
