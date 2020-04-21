@@ -4,7 +4,7 @@ This [plugin](https://www.netlify.com/build/plugins-beta?utm_source=github&utm_m
 
 Note: Many SSGs support this as part of their own process so this might not always be necessary.
 
-This plugin is agnostic to the tool being used to generate the markup, and acts purely on the markup it finds in `.html` files in the publish folder which [Netlify](https://www.netlify.com?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) is preparing to deploy to [its CDN](https://www.netlify.com/products/edge/?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) following a successful build.
+This plugin is agnostic to the tool being used to generate the markup, and acts purely on the markup it finds in `.html` files in the publish folder which [Netlify](https://www.netlify.com?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex) is preparing to deploy to [its CDN](https://www.netlify.com/products/edge/?utm_source=github&utm_medium=pluginhtmlminifier-pnh&utm_campaign=devex) following a successful build.
 
 ## Installation
 
@@ -21,30 +21,33 @@ npm i --s netlify-plugin-minify-html
 ```
 
 
-### 2. Add the plugin and its options to your netlify.yaml
+### 2. Add the plugin and its options to your netlify.toml
 
-You can choose which deploy contexts will include the HTML minification with the `targets` option.
+You can choose which [deploy contexts](https://docs.netlify.com/site-deploys/overview/?utm_source=github&utm_medium=plugin-htmlminfier-pnh&utm_campaign=devex#deploy-contexts) will include the HTML minification with the `targets` option.
 
-You can use the `minifierOptions` config array to pass option to the minifier. A full list of the [available options](https://www.npmjs.com/package/html-minifier#options-quick-reference) are available from the [html-minfier library](https://www.npmjs.com/package/html-minifier)
+You can use the default options for the minification or use `[plugins.inputs.minifierOptions]` to pass options to the minifier. A full list of the [available options](https://www.npmjs.com/package/html-minifier#options-quick-reference) are available from the [html-minfier library](https://www.npmjs.com/package/html-minifier)
 
-```yaml
-plugins:
-  # Path to plugin. Can be local relative path or reference to node_modules
-  - package: netlify-plugin-minify-html
-    config:
-      # Builds in which deploy contexts will get minified?
-      # [production, deploy-preview, branch-deploy]
-      targets:
-        - production
-        - branch-deploy
-      minifierOptions:
-        - removeComments: false
-        - removeEmptyElements: true
+```toml
+
+# Config for the Netlify Build Plugin: netlify-plugin-minify-html
+[[plugins]]
+  package = "netlify-plugin-minify-html"
+
+  # Specify which deploy contexts we'll minify HTML in.
+  # Supports any Deploy Contexts available in Netlify.
+  # https://docs.netlify.com/site-deploys/overview/#deploy-contexts
+  [plugins.inputs]
+    contexts = [
+      'production',
+      'branch-deploy',
+      'deploy-preview'
+    ]
+
+  # Optionally, override the default options for the minification
+  # https://github.com/kangax/html-minifier#options-quick-reference
+  [plugins.inputs.minifierOptions]
+    removeComments = true
+    collapseInlineTagWhitespace = false
+
 ```
-
-## 🚨 NOTE - Netlify Plugins are currently in private beta
-
-At this time, this plugin will only be available to those participating in the private beta of [Netlify Plugins](https://www.netlify.com/build/plugins-beta?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex).
-
-If you would like [access to the beta](https://www.netlify.com/build/plugins-beta?utm_source=github&utm_medium=plugin-htmlminifier-pnh&utm_campaign=devex), you are very welcome to apply.
 

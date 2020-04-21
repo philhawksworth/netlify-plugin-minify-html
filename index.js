@@ -2,51 +2,31 @@ const comp         = require('@node-minify/core');
 const htmlMinifier = require('@node-minify/html-minifier');
 
 
-const getOptions = ({ constants, pluginConfig }) => {
-  return {
-    publishDir: constants.BUILD_DIR,
-    targetContexts: pluginConfig.targets,
-    minifierOptions: pluginConfig.minifierOptions
-  };
-};
-
-
 module.exports = {
 
-  name: 'netlify-plugin-minify-html',
+  onSuccess: ({ inputs, constants }) => {
 
-  onPostBuild: (args) => {
-
-    // Assemble and advertise our options
-    const {
-      publishDir,
-      targetContexts,
-      minifierOptions
-    } = getOptions(args);
-    console.log("Minifying in these deploy contexts:", targetContexts);
-    console.log("Minifying with these options:", minifierOptions);
-
-    // Only continue in the correct deploy contexts
-    if( !targetContexts.includes(process.env.CONTEXT) ) {
-      console.log('Not minifiying builds in the context:', process.env.CONTEXT);
+    // Only continue in the selected deploy contexts
+    if( !inputs.contexts.includes(process.env.CONTEXT) ) {
+      console.log('Not minifiying HTML in the context:', process.env.CONTEXT);
       return;
     }
 
-    // transform the minification options from the yaml
-    // into the correct syntax
-    const options = Object.assign({}, ...minifierOptions);
+    // Minify HTML
+    console.log('Minifiying HTML in the deploy context:', process.env.CONTEXT);
+    console.log('Minifiying HTML with these options:', inputs.minifierOptions || "Default");
+    try {
+      comp({
+        compressor: htmlMinifier,
+        input: constants.PUBLISH_DIR + '/**/*.html',
+        output: '$1.html',
+        replaceInPlace: true,
+        options: inputs.minifierOptions
+      });
+    } catch (error) {
+      utils.build.failPlugin('The Minify HTML plugin failed.', { error })
+    }
 
-    // Minify in place
-    comp({
-      compressor: htmlMinifier,
-      input: publishDir + '/**/*.html',
-      output: '$1.html',
-      replaceInPlace: true,
-      options: options,
-      callback: function(err) {
-        if (err) console.log(err);
-      }
-    });
   }
 
 }
