@@ -4,7 +4,7 @@ const htmlMinifier = require('@node-minify/html-minifier');
 
 module.exports = {
 
-  onSuccess: ({ inputs, constants }) => {
+  onSuccess: async ({ inputs, constants }) => {
 
     // Only continue in the selected deploy contexts
     if( !inputs.contexts.includes(process.env.CONTEXT) ) {
@@ -16,7 +16,7 @@ module.exports = {
     console.log('Minifiying HTML in the deploy context:', process.env.CONTEXT);
     console.log('Minifiying HTML with these options:', inputs.minifierOptions || "Default");
     try {
-      comp({
+      await comp({
         compressor: htmlMinifier,
         input: constants.PUBLISH_DIR + '/**/*.html',
         output: '$1.html',
