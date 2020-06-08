@@ -4,7 +4,7 @@ const htmlMinifier = require('@node-minify/html-minifier');
 
 module.exports = {
 
-  onSuccess: ({ inputs, constants, utils }) => {
+  onSuccess: async ({ inputs, constants, utils }) => {
 
     // Only continue in the selected deploy contexts
     if( !inputs.contexts.includes(process.env.CONTEXT) ) {
@@ -18,10 +18,8 @@ module.exports = {
 
     try {
 
-      comp({
+      await comp({
         compressor: htmlMinifier,
-        // publicFolder: constants.PUBLISH_DIR,
-        // input: '**/*.html',
         input: constants.PUBLISH_DIR + '/**/*.html',
         output: '$1.html',
         replaceInPlace: true,
@@ -30,7 +28,6 @@ module.exports = {
 
 
     } catch (error) {
-      console.log('error :>> ', error);
       utils.build.failPlugin('The Minify HTML plugin failed.', { error })
     }
 
