@@ -17,7 +17,6 @@ module.exports = {
     console.log('Minifiying HTML with these options:', inputs.minifierOptions || "Default");
 
     try {
-
       await comp({
         compressor: htmlMinifier,
         input: constants.PUBLISH_DIR + '/**/*.html',
