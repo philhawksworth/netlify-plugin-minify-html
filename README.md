@@ -46,7 +46,7 @@ You can use the default options for the minification or use `[plugins.inputs.min
   # Optionally, override the default options for the minification
   # https://github.com/kangax/html-minifier#options-quick-reference
   [plugins.inputs.minifierOptions]
-    removeComments = true
+    removeComments = false
     collapseInlineTagWhitespace = false
 
 ```
