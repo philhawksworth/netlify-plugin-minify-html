@@ -4,7 +4,7 @@ const htmlMinifier = require('@node-minify/html-minifier');
 
 module.exports = {
 
-  onSuccess: async ({ inputs, constants, utils }) => {
+  onPostBuild: async ({ inputs, constants, utils }) => {
 
     // Only continue in the selected deploy contexts
     if( !inputs.contexts.includes(process.env.CONTEXT) ) {
