@@ -8,20 +8,25 @@ This plugin is agnostic to the tool being used to generate the markup, and acts 
 
 ## Installation
 
-To include this plugin in your site deployment:
+To include this plugin in your site deployment, use the Netlify UI or file-based installation:
 
+### UI installation
 
-### 1. Add the plugin as a dependency
+You can install this plugin in the Netlify UI from this [direct in-app installation link](https://app.netlify.com/plugins/netlify-plugin-minify-html/install) or from the [Plugins directory](https://app.netlify.com/plugins).
+
+### File-based installation
+
+#### 1. Add the plugin as a dependency
 
 ```bash
 
 # Add the plugin as a dependency of your build
-npm i --s netlify-plugin-minify-html
+npm i -D netlify-plugin-minify-html
 
 ```
 
 
-### 2. Add the plugin and its options to your netlify.toml
+#### 2. Add the plugin and its options to your netlify.toml
 
 You can choose which [deploy contexts](https://docs.netlify.com/site-deploys/overview/?utm_source=github&utm_medium=plugin-htmlminfier-pnh&utm_campaign=devex#deploy-contexts) will include the HTML minification with the `targets` option.
 
