@@ -22,7 +22,10 @@ module.exports = {
         input: constants.PUBLISH_DIR + '/**/*.html',
         output: '$1.html',
         replaceInPlace: true,
-        options: inputs.minifierOptions
+        options: {
+          collapseWhitespace: false,
+          ...inputs.minifierOptions
+        }
       });
 
 
