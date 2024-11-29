@@ -14,20 +14,21 @@ module.exports = {
 
     // Minify HTML
     console.log('Minifiying HTML in the deploy context:', process.env.CONTEXT);
-    console.log('Minifiying HTML with these options:', inputs.minifierOptions || "Default");
+    const options = {
+      collapseWhitespace: false,
+      ...inputs.minifierOptions
+    };
+    console.log('Minifiying HTML with these options:', options || "Default");
 
     try {
-      await comp({
+      const compResult = await comp({
         compressor: htmlMinifier,
         input: constants.PUBLISH_DIR + '/**/*.html',
         output: '$1.html',
         replaceInPlace: true,
-        options: {
-          collapseWhitespace: false,
-          ...inputs.minifierOptions
-        }
+        options
       });
-
+      console.log('Minifiying HTML complete');
 
     } catch (error) {
       utils.build.failPlugin('The Minify HTML plugin failed.', { error })
